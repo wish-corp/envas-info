@@ -1,0 +1,7 @@
+services:
+  info-site:
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/docs:cache

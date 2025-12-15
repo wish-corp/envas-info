@@ -1,0 +1,29 @@
+site_name: envas（エンバス） お知らせサイト
+site_description: WEB 席次表 envas（エンバス） お知らせサイトです。
+site_author: envas
+site_url: https://info.envas.jp/
+copyright: "&copy; 2025 WISH LLC. All rights reserved."
+
+theme:
+  name: material
+  logo: images/envas.png
+  favicon: images/favicon.ico
+  language: ja
+  palette:
+    scheme: default
+    primary: custom
+  features:
+    - navigation.top
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  search:
+    lang: "ja"
+
+extra:
+  generator: false
+
+markdown_extensions:
+  - nl2br
