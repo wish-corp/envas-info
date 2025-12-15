@@ -19,11 +19,29 @@ extra_css:
   - stylesheets/extra.css
 
 plugins:
-  search:
-    lang: "ja"
+  - search:
+      lang: "ja"
+  - rss:
+      match_path: ".*"
+      date_from_meta:
+        as_creation: date.created
+        as_update: date.updated
+      categories:
+        - tags
+      feeds_filenames:
+        rss_created: feed.xml
+      json_feed_enabled: false
 
 extra:
   generator: false
+  social:
+    - icon: fontawesome/solid/rss
+      link: /feed.xml
+      name: RSS フィード
+
+nav:
+  - ホーム: index.md
+  - RSS: /feed.xml
 
 markdown_extensions:
   - nl2br
