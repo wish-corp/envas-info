@@ -15,3 +15,7 @@
 .md-typeset h2 {
   border-bottom: 1px dotted #888;
 }
+
+.md-typeset .grid.cards a {
+  color: inherit;
+}
