@@ -2,7 +2,13 @@
 
 envas をご利用いただき、誠にありがとうございます。
 
-このたび、envas でご利用いただける支払い方法に **ApplePay**, **PayPay** を追加しました。
+## 支払い方法に **ApplePay**, **PayPay** を追加しました
+
+<div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
+  <img src="/images/Apple_Pay_Mark_RGB_041619.svg" alt="Apple Pay" width="80">
+  <img src="/images/paypay-logo.png" alt="PayPay" width="80">
+</div>
+
 この追加により、これまではお客様にあらかじめクレジットカードの入力を求めていましたが、これからは料金のお支払い時に都度お支払い方法が選択できるようになりました。
 既存の支払い方法であるクレジットカード決済は引き続きご利用いただけます。
 
