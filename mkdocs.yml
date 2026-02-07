@@ -45,7 +45,7 @@ extra:
 nav:
   - ホーム: index.md
   - お知らせ:
-    - news/2026-02-07-add-applepay-and-paypay.md
+    - news/2026-02-08-add-applepay-and-paypay.md
     - news/2026-01-19-policy-pages.md
   - RSS: /feed.xml
 
