@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://info.envas.jp/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://info.envas.jp/news/2026-01-19-policy-pages/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://info.envas.jp/news/2026-02-14-add-applepay-and-paypay/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
 </urlset>
