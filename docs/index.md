@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-03-24: **ゲスト管理機能の追加とシステムメンテナンス実施のご報告**](news/2026-03-24-add-guest-and-maintenance.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-02-14: **利用可能な支払い方法にApplePayとPayPay追加しました**](news/2026-02-14-add-applepay-and-paypay.md)
 </div>
 <div class="grid cards" markdown>
