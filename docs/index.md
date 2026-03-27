@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-03-27: **二次会設定機能を追加しました**](news/2026-03-27-add-after-party.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-03-24: **ゲスト管理機能の追加とシステムメンテナンス実施のご報告**](news/2026-03-24-add-guest-and-maintenance.md)
 </div>
 <div class="grid cards" markdown>
