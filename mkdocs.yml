@@ -45,6 +45,7 @@ extra:
 nav:
   - ホーム: index.md
   - お知らせ:
+    - news/2026-03-27-add-after-party.md
     - news/2026-03-24-add-guest-and-maintenance.md
     - news/2026-02-14-add-applepay-and-paypay.md
     - news/2026-01-19-policy-pages.md
