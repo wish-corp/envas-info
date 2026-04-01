@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-04-01: **フォトギャラリー機能をリリースしました**](news/2026-04-01-photo-gallery.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-03-27: **二次会設定機能を追加しました**](news/2026-03-27-add-after-party.md)
 </div>
 <div class="grid cards" markdown>
