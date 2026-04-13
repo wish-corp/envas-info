@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-04-13: **取引履歴ページを追加しました**](news/2026-04-13-transaction-history.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-04-01: **フォトギャラリー機能をリリースしました**](news/2026-04-01-photo-gallery.md)
 </div>
 <div class="grid cards" markdown>
