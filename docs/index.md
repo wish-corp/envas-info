@@ -1,7 +1,7 @@
 # お知らせ
 
 <div class="grid cards" markdown>
-- [:material-calendar: 2026-05-04: **ゲストを CSV で一括登録できるようになりました**](news/2026-05-04-guest-csv-import.md)
+- [:material-calendar: 2026-05-04: **ゲスト一覧の CSV インポート / エクスポートに対応しました**](news/2026-05-04-guest-csv-import.md)
 </div>
 <div class="grid cards" markdown>
 - [:material-calendar: 2026-04-13: **取引履歴ページを追加しました**](news/2026-04-13-transaction-history.md)
