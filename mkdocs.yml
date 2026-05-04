@@ -45,6 +45,7 @@ extra:
 nav:
   - ホーム: index.md
   - お知らせ:
+    - news/2026-05-04-guest-csv-import.md
     - news/2026-04-13-transaction-history.md
     - news/2026-04-01-photo-gallery.md
     - news/2026-03-27-add-after-party.md
