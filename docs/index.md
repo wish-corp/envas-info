@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-06-18: **席次表画像ダウンロード機能をリリースしました**](news/2026-06-18-seating-chart-image.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-05-04: **ゲスト一覧の CSV インポート / エクスポートに対応しました**](news/2026-05-04-guest-csv-import.md)
 </div>
 <div class="grid cards" markdown>
