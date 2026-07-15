@@ -1,6 +1,9 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-07-16: **パートナーとの共同編集機能をリリースしました**](news/2026-07-16-collaborative-editing.md)
+</div>
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-06-18: **席次表画像ダウンロード機能をリリースしました**](news/2026-06-18-seating-chart-image.md)
 </div>
 <div class="grid cards" markdown>
