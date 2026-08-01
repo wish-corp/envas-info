@@ -45,6 +45,7 @@ extra:
 nav:
   - ホーム: index.md
   - お知らせ:
+    - news/2026-08-02-account-withdrawal-and-storage-period.md
     - news/2026-07-16-collaborative-editing.md
     - news/2026-06-23-seating-chart-image.md
     - news/2026-05-04-guest-csv-import.md
