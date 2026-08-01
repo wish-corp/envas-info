@@ -1,6 +1,10 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-08-02: **退会機能のリリースと挙式データの保管期限の新設について**](news/2026-08-02-account-withdrawal-and-storage-period.md)
+</div>
+
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-07-16: **パートナーとの共同編集機能をリリースしました**](news/2026-07-16-collaborative-editing.md)
 </div>
 <div class="grid cards" markdown>
