@@ -1,6 +1,10 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-08-11: **プロフィールブックに和テーマを追加しました**](news/2026-08-11-profile-book-wa-theme.md)
+</div>
+
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-08-02: **退会機能のリリースと挙式データの保管期限の新設について**](news/2026-08-02-account-withdrawal-and-storage-period.md)
 </div>
 
