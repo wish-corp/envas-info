@@ -1,6 +1,10 @@
 # お知らせ
 
 <div class="grid cards" markdown>
+- [:material-calendar: 2026-10-02: **席次表だけを公開できるようになりました**](news/2026-10-02-seating-chart-publish.md)
+</div>
+
+<div class="grid cards" markdown>
 - [:material-calendar: 2026-08-11: **プロフィールブックに和テーマを追加しました**](news/2026-08-11-profile-book-wa-theme.md)
 </div>
 
