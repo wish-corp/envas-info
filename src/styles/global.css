@@ -115,9 +115,6 @@ input::placeholder {
 }
 
 .prose h2 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin: 80px 0 28px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-border);
@@ -154,6 +151,8 @@ input::placeholder {
 }
 
 .prose table {
+  display: block;
+  overflow-x: auto;
   width: 100%;
   margin: 0 0 1.8em;
   border-collapse: collapse;
@@ -163,6 +162,7 @@ input::placeholder {
 
 .prose th,
 .prose td {
+  min-width: 8em;
   padding: 12px 16px;
   border: 1px solid var(--color-border);
   text-align: left;
@@ -249,9 +249,10 @@ input::placeholder {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   width: 32px;
   height: 32px;
+  margin-left: 12px;
+  vertical-align: middle;
   color: #c9b79c;
   opacity: 0;
   transition: opacity 0.2s;
