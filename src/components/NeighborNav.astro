@@ -1,0 +1,87 @@
+---
+import PublishedAt from './PublishedAt.astro';
+import type { NewsEntry } from '../lib/news';
+
+interface Props {
+  newer?: NewsEntry;
+  older?: NewsEntry;
+}
+
+const { newer, older } = Astro.props;
+---
+<nav class="neighbor" aria-label="前後のお知らせ" data-pagefind-ignore>
+  {older ? (
+    <a class="item previous" href={`/news/${older.id}/`}>
+      <span class="label">Previous</span>
+      <span class="date"><PublishedAt date={older.data.publishedAt} /></span>
+      <span class="title">{older.data.title}</span>
+    </a>
+  ) : (
+    <a class="item previous index" href="/">
+      <span class="label">Index</span>
+      <span class="title">お知らせ一覧へ</span>
+    </a>
+  )}
+  {newer ? (
+    <a class="item next" href={`/news/${newer.id}/`}>
+      <span class="label">Next</span>
+      <span class="date"><PublishedAt date={newer.data.publishedAt} /></span>
+      <span class="title">{newer.data.title}</span>
+    </a>
+  ) : (
+    <a class="item next index" href="/">
+      <span class="label">Index</span>
+      <span class="title">お知らせ一覧へ</span>
+    </a>
+  )}
+</nav>
+
+<style>
+  .neighbor {
+    margin-top: 96px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .previous {
+    padding: 28px 24px 28px 0;
+    border-right: 1px solid var(--color-border);
+  }
+  .next {
+    padding: 28px 0 28px 24px;
+    align-items: flex-end;
+    text-align: right;
+  }
+  .index {
+    justify-content: center;
+  }
+  .label {
+    font-family: var(--font-en);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--color-link);
+  }
+  .date {
+    font-family: var(--font-en);
+    font-size: 15px;
+    color: var(--color-text-sub);
+    letter-spacing: 0.05em;
+  }
+  .title {
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .item:hover .title {
+    color: var(--color-link);
+  }
+</style>

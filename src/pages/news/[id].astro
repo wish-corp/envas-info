@@ -1,0 +1,150 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArchiveNav from '../../components/ArchiveNav.astro';
+import NeighborNav from '../../components/NeighborNav.astro';
+import PublishedAt from '../../components/PublishedAt.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { formatDate } from '../../lib/datetime';
+import { getSortedNews, type NewsEntry } from '../../lib/news';
+import { slugify, unique } from '../../markdown/heading-ids';
+
+export async function getStaticPaths() {
+  const entries = await getSortedNews();
+  for (const entry of entries) {
+    // glob loader は変換時の例外をログに出すだけで握りつぶし、本文が空のままビルドが通ってしまう
+    if (!entry.rendered) {
+      throw new Error(`${entry.id}: Markdown の変換に失敗した（直前の "Error rendering" ログを参照）`);
+    }
+  }
+  return entries.map((entry, index) => ({
+    params: { id: entry.id },
+    props: { entry, entries, newer: entries[index - 1], older: entries[index + 1] },
+  }));
+}
+
+interface Props {
+  entry: NewsEntry;
+  entries: NewsEntry[];
+  newer?: NewsEntry;
+  older?: NewsEntry;
+}
+
+const { entry, entries, newer, older } = Astro.props;
+const { Content, headings } = await render(entry);
+const titleId = unique(slugify(entry.data.title), new Set());
+---
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  ogImagePath={`/og/news/${entry.id}.png`}
+  ogType="article"
+>
+  <div class="layout">
+    <ArchiveNav entries={entries} currentId={entry.id} />
+
+    <main>
+      <article data-pagefind-body>
+        <nav class="breadcrumb" aria-label="パンくず" data-pagefind-ignore>
+          <a href="/">お知らせ</a>
+          <span aria-hidden="true">/</span>
+          <span>{formatDate(entry.data.publishedAt)}</span>
+        </nav>
+
+        <header class="article-header">
+          <span class="article-date"><PublishedAt date={entry.data.publishedAt} withTime /></span>
+          <h1 id={titleId} class="article-title">{entry.data.title}</h1>
+          <div class="ornament" aria-hidden="true">
+            <span class="line"></span>
+            <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0 8 4 4 8 0 4Z" fill="#E7A03C"></path></svg>
+          </div>
+        </header>
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        <NeighborNav newer={newer} older={older} />
+      </article>
+    </main>
+
+    <TableOfContents headings={headings} />
+  </div>
+</BaseLayout>
+
+<style>
+  .layout {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 72px 32px 0;
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr) 216px;
+    gap: 64px;
+    align-items: start;
+  }
+  main {
+    min-width: 0;
+  }
+  article {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .breadcrumb {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--color-text-sub);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .breadcrumb a {
+    color: var(--color-text-sub);
+    text-decoration: none;
+  }
+  .article-header {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .article-date {
+    font-family: var(--font-en);
+    font-size: 21px;
+    letter-spacing: 0.06em;
+  }
+  .article-date :global(.time) {
+    margin-left: 14px;
+    color: var(--color-text-sub);
+  }
+  .article-title {
+    margin: 0;
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .line {
+    width: 56px;
+    height: 1px;
+    background: var(--color-brand);
+  }
+  .prose {
+    margin-top: 48px;
+  }
+  @media (max-width: 1100px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 760px) {
+    .article-title {
+      font-size: 27px;
+    }
+  }
+</style>
