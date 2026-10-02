@@ -1,0 +1,125 @@
+---
+---
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="/">
+      <img src="/images/envas.png" alt="" width="40" height="40" />
+      <span class="brand-text">
+        <span class="brand-name">envas</span>
+        <span class="brand-sub">お知らせ</span>
+      </span>
+    </a>
+    <nav aria-label="サイト">
+      <div class="nav-links">
+        <a href="/">お知らせ一覧</a>
+        <a href="https://help.envas.jp/">ヘルプ</a>
+        <a href="https://envas.jp/">envas 公式サイト</a>
+      </div>
+      <form class="search" role="search" action="/search/" method="get">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E645A" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        <label for="site-search" class="sr">お知らせを検索</label>
+        <input id="site-search" name="q" type="search" placeholder="お知らせを検索" />
+      </form>
+      <a class="rss" href="/feed.xml" aria-label="RSS フィード">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11a8 8 0 0 1 8 8"></path><path d="M5 5a14 14 0 0 1 14 14"></path><circle cx="6" cy="18" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .brand img {
+    width: 40px;
+    height: 40px;
+    mix-blend-mode: multiply;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .brand-name {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .brand-sub {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--color-text-sub);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+  .nav-links a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+  }
+  .search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font: inherit;
+    font-size: 13px;
+    width: 150px;
+    color: var(--color-text);
+  }
+  .search:focus-within {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+  .rss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--color-link);
+  }
+  @media (max-width: 760px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>

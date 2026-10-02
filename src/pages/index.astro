@@ -1,12 +1,64 @@
 ---
-import { SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <title>{SITE_TITLE}</title>
-  </head>
-  <body>
-    <h1>お知らせ</h1>
-  </body>
-</html>
+<BaseLayout ogImagePath="/og/index.png" ogType="website">
+  <main>
+    <section class="hero">
+      <p class="eyebrow">NEWS</p>
+      <h1 class="hero-title">お知らせ</h1>
+      <div class="ornament" aria-hidden="true">
+        <span class="line"></span>
+        <svg width="9" height="9" viewBox="0 0 8 8"><path d="M4 0 8 4 4 8 0 4Z" fill="#E7A03C"></path></svg>
+        <span class="line"></span>
+      </div>
+      <p class="lead">WEB 席次表 envas の新しい機能やサービスについてお知らせします。</p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 104px 32px 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+  .eyebrow {
+    margin: 0;
+    font-family: var(--font-en);
+    font-size: 15px;
+    letter-spacing: 0.42em;
+    color: var(--color-link);
+  }
+  .hero-title {
+    margin: 0;
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 44px;
+    letter-spacing: 0.16em;
+  }
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .line {
+    width: 64px;
+    height: 1px;
+    background: var(--color-brand);
+  }
+  .lead {
+    margin: 6px 0 0;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-text-sub);
+    letter-spacing: 0.06em;
+  }
+  @media (max-width: 760px) {
+    .hero-title {
+      font-size: 34px;
+    }
+  }
+</style>
