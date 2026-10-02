@@ -1,5 +1,17 @@
 ---
+import PublishedAt from '../components/PublishedAt.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { jstYear } from '../lib/datetime';
+import { getSortedNews, type NewsEntry } from '../lib/news';
+
+const [latest, ...rest] = await getSortedNews();
+
+const entriesByYear = new Map<number, NewsEntry[]>();
+for (const entry of rest) {
+  const year = jstYear(entry.data.publishedAt);
+  entriesByYear.set(year, [...(entriesByYear.get(year) ?? []), entry]);
+}
+const years = [...entriesByYear.entries()].sort(([a], [b]) => b - a);
 ---
 <BaseLayout ogImagePath="/og/index.png" ogType="website">
   <main>
@@ -13,6 +25,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       <p class="lead">WEB 席次表 envas の新しい機能やサービスについてお知らせします。</p>
     </section>
+
+    {latest && (
+      <section class="section" aria-label="最新のお知らせ">
+        <a class="featured" href={`/news/${latest.id}/`}>
+          <div class="featured-meta">
+            <span class="featured-label">Latest</span>
+            <span class="featured-rule" aria-hidden="true"></span>
+            <span class="featured-date"><PublishedAt date={latest.data.publishedAt} withTime /></span>
+          </div>
+          <h2 class="featured-title">{latest.data.title}</h2>
+          {latest.data.description && <p class="featured-excerpt">{latest.data.description}</p>}
+          <span class="featured-more">
+            続きを読む
+            <svg width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="#E7A03C" stroke-width="1" aria-hidden="true"><path d="M0 6h27M21 1l6 5-6 5"></path></svg>
+          </span>
+        </a>
+      </section>
+    )}
+
+    {years.map(([year, entries]) => (
+      <section class="section list-section" aria-label={`${year} 年のお知らせ`}>
+        <div class="year">
+          <h2 class="year-title">{year}</h2>
+          <span class="year-rule" aria-hidden="true"></span>
+        </div>
+        <ul class="rows">
+          {entries.map((entry) => (
+            <li>
+              <a class="row" href={`/news/${entry.id}/`}>
+                <span class="row-date"><PublishedAt date={entry.data.publishedAt} withTime /></span>
+                <span class="row-title">{entry.data.title}</span>
+                <svg class="row-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="#E7A03C" stroke-width="1" aria-hidden="true"><path d="M0 6h27M21 1l6 5-6 5"></path></svg>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </main>
 </BaseLayout>
 
@@ -56,9 +106,158 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text-sub);
     letter-spacing: 0.06em;
   }
+
+  .section {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .list-section {
+    margin-top: 104px;
+  }
+
+  .featured {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 64px 80px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    outline: 1px solid var(--color-border-inner);
+    outline-offset: -11px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .featured-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .featured-label {
+    font-family: var(--font-en);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--color-link);
+    letter-spacing: 0.04em;
+  }
+  .featured-rule {
+    width: 28px;
+    height: 1px;
+    background: var(--color-brand);
+    align-self: center;
+  }
+  .featured-date {
+    font-family: var(--font-en);
+    font-size: 20px;
+    letter-spacing: 0.06em;
+  }
+  .featured-date :global(.time) {
+    margin-left: 12px;
+    color: var(--color-text-sub);
+  }
+  .featured-title {
+    margin: 0;
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+  .featured-excerpt {
+    margin: 0;
+    font-size: 15px;
+    line-height: 2.1;
+    color: #5a5148;
+    max-width: 760px;
+  }
+  .featured-more {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    color: var(--color-link);
+  }
+
+  .year {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+  .year-title {
+    margin: 0;
+    font-family: var(--font-en);
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: 0.04em;
+  }
+  .year-rule {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+  .rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rows li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) 32px;
+    gap: 32px;
+    align-items: center;
+    padding: 30px 8px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .row-date {
+    font-family: var(--font-en);
+    font-size: 21px;
+    letter-spacing: 0.05em;
+  }
+  .row-date :global(.time) {
+    margin-left: 12px;
+    font-size: 16px;
+    color: var(--color-text-sub);
+  }
+  .row-title {
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.75;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+  }
+  .row-arrow {
+    transition: transform 0.3s ease;
+  }
+  .row:hover .row-title {
+    color: var(--color-link);
+  }
+  .row:hover .row-arrow {
+    transform: translateX(4px);
+  }
+
   @media (max-width: 760px) {
     .hero-title {
       font-size: 34px;
+    }
+    .featured {
+      padding: 40px 28px;
+    }
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+      padding: 24px 4px;
+    }
+    .row-arrow {
+      display: none;
     }
   }
 </style>

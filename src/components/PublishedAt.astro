@@ -1,0 +1,11 @@
+---
+import { formatDate, formatTime, toIsoJst } from '../lib/datetime';
+
+interface Props {
+  date: Date;
+  withTime?: boolean;
+}
+
+const { date, withTime = false } = Astro.props;
+---
+<time datetime={toIsoJst(date)}>{formatDate(date)}{withTime && <span class="time">{formatTime(date)}</span>}</time>
