@@ -270,3 +270,12 @@ input::placeholder {
 .prose a.anchor:focus {
   opacity: 1;
 }
+
+#search {
+  --pagefind-ui-primary: #96580a;
+  --pagefind-ui-text: #2a2420;
+  --pagefind-ui-background: #fffdf9;
+  --pagefind-ui-border: #e6dccd;
+  --pagefind-ui-tag: #f5ede1;
+  --pagefind-ui-font: var(--font-sans);
+}
