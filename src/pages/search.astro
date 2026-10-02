@@ -2,20 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="検索" ogImagePath="/og/index.png" ogType="website">
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        const ui = new PagefindUI({ element: '#search', showSubResults: true });
+        const query = new URLSearchParams(location.search).get('q');
+        if (query) ui.triggerSearch(query);
+      });
+    </script>
+  </Fragment>
   <main class="search-page">
     <div id="search"></div>
   </main>
 </BaseLayout>
-
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-<script is:inline src="/pagefind/pagefind-ui.js"></script>
-<script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-    const ui = new PagefindUI({ element: '#search', showSubResults: true });
-    const query = new URLSearchParams(location.search).get('q');
-    if (query) ui.triggerSearch(query);
-  });
-</script>
 
 <style>
   .search-page {
