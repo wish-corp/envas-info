@@ -1,4 +1,7 @@
-# 利用可能な支払い方法にApplePayとPayPay追加しました
+---
+title: "利用可能な支払い方法にApplePayとPayPay追加しました"
+publishedAt: "2026-02-14T19:00:00+09:00"
+---
 
 envas をご利用いただき、誠にありがとうございます。
 
