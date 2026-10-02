@@ -1,0 +1,126 @@
+---
+import PublishedAt from './PublishedAt.astro';
+import type { NewsEntry } from '../lib/news';
+
+const ARCHIVE_LIMIT = 8;
+
+interface Props {
+  entries: NewsEntry[];
+  currentId: string;
+}
+
+const { entries, currentId } = Astro.props;
+const archive = entries.slice(0, ARCHIVE_LIMIT);
+---
+<aside class="side" aria-label="過去のお知らせ">
+  <div class="heading">
+    <span class="heading-en">Archive</span>
+    <span class="heading-ja">過去のお知らせ</span>
+  </div>
+  <ul>
+    {archive.map((entry) => {
+      const isCurrent = entry.id === currentId;
+      return (
+        <li>
+          <a
+            class:list={['side-link', { current: isCurrent }]}
+            href={`/news/${entry.id}/`}
+            aria-current={isCurrent ? 'page' : undefined}
+          >
+            <span class="side-date">
+              {isCurrent && (
+                <svg width="6" height="6" viewBox="0 0 8 8" aria-hidden="true"><path d="M4 0 8 4 4 8 0 4Z" fill="#E7A03C"></path></svg>
+              )}
+              <PublishedAt date={entry.data.publishedAt} />
+            </span>
+            <span class="side-title">{entry.data.title}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+  <a class="all" href="/">
+    すべてのお知らせ
+    <svg width="22" height="10" viewBox="0 0 28 12" fill="none" stroke="#E7A03C" stroke-width="1.2" aria-hidden="true"><path d="M0 6h27M21 1l6 5-6 5"></path></svg>
+  </a>
+</aside>
+
+<style>
+  .side {
+    position: sticky;
+    top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .heading-en {
+    font-family: var(--font-en);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--color-link);
+  }
+  .heading-ja {
+    font-family: var(--font-mincho);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .side-link {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 0;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .side-link:hover .side-title {
+    color: var(--color-link);
+  }
+  .side-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-en);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--color-text-sub);
+  }
+  .side-title {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .current .side-date,
+  .current .side-title {
+    color: var(--color-link);
+  }
+  .current .side-title {
+    font-weight: 500;
+  }
+  .all {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+  @media (max-width: 1100px) {
+    .side {
+      display: none;
+    }
+  }
+</style>
