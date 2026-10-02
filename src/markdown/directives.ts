@@ -80,13 +80,15 @@ function transformMedia(node: LeafDirective, file: VFile) {
 export function remarkDirectiveBlocks() {
   return (tree: Root, file: VFile) => {
     const source = String(file.value);
-    visit(tree, (node, index, parent) => {
-      // 文中の「:英字」は text directive と解釈されて文字が消えるので、元の文字列に戻す
-      if (node.type === 'textDirective' && parent && index !== undefined && node.position) {
-        const { start, end } = node.position;
-        parent.children.splice(index, 1, { type: 'text', value: source.slice(start.offset, end.offset) });
-        return [SKIP, index];
-      }
+    // 文中の「:英字」は text directive と解釈されて文字が消えるので、元の文字列に戻す。
+    // 動画のキャプションは親の leaf directive を変換する時点で文字列化するので、変換より先に全体を戻しておく
+    visit(tree, 'textDirective', (node, index, parent) => {
+      if (!parent || index === undefined || !node.position) return;
+      const { start, end } = node.position;
+      parent.children.splice(index, 1, { type: 'text', value: source.slice(start.offset, end.offset) });
+      return [SKIP, index];
+    });
+    visit(tree, (node) => {
       if (node.type === 'containerDirective') transformCallout(node, file);
       if (node.type === 'leafDirective') transformMedia(node, file);
     });
