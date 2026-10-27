@@ -237,6 +237,16 @@ input::placeholder {
   background: #3a322b;
 }
 
+/* 縦長のスマートフォンの画面と横長の PC の画面の両方を載せるので、16:9 の枠に入れず高さで抑える */
+.prose figure.media video {
+  width: auto;
+  max-width: 100%;
+  max-height: min(640px, 80vh);
+  height: auto;
+  aspect-ratio: auto;
+  margin: 0 auto;
+}
+
 .prose figure.media figcaption {
   text-align: center;
   font-size: 13px;
