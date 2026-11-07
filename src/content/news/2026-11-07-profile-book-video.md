@@ -28,4 +28,4 @@ envas をご利用いただき、誠にありがとうございます。
 
 使い方はヘルプページをご覧ください。
 
-[https://help.envas.jp/](https://help.envas.jp/)
+[https://help.envas.jp/profile-book-video/](https://help.envas.jp/profile-book-video/)
